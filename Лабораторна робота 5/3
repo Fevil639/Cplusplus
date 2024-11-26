@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double calculate_y(double x) {
+    return pow(x, 4) + 6;  
+}
+
+int main() {
+    double a, b, h;
+    
+   
+    cout << "Enter the value for a: ";
+    cin >> a;
+    cout << "Enter the value for b: ";
+    cin >> b;
+    cout << "Enter the step size h: ";
+    cin >> h;
+
+   
+    if (h <= 0) {
+        cout << "Error: Step size must be positive!" << endl;
+        return -1;
+    }
+
+  
+    if (a > b) {
+        cout << "Error: The start of the interval must be less than the end!" << endl;
+        return -1;
+    }
+
+  
+    cout << "X\t\tY\n";
+    cout << "-----------------\n";
+
+    
+    for (double x = a; x <= b; x += h) {
+        
+        double y = calculate_y(x);
+        
+        cout << x << "\t\t" << y << endl;
+    }
+
+    return 0;
+}
