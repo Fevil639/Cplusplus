@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm> 
+
+int main() {
+    const int m = 12;
+    int arr[m] = {5, 3, 8, 1, 9, 12, 4, 7, 2, 6, 10, 11}; 
+
+    std::sort(arr, arr + m);
+
+    std::cout << "Array in ascending order: ";
+    for (int i = 0; i < m; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    std::sort(arr, arr + m, std::greater<int>());
+
+    std::cout << "Array in descending order: ";
+    for (int i = 0; i < m; i++) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
