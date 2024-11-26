@@ -1,1 +1,26 @@
 
+#include <iostream>
+#include <math.h> 
+
+int main() {
+   double a;
+   double b;
+   
+    std::cout << "a is = ";
+    std::cin >> a;
+    std::cout << "b is = ";
+    std::cin >>b;
+    
+    const double pi = M_PI; 
+    const double e = exp(1.0);  
+    
+    double numerator = 0.807 * (1 - pow(sin((a - b) * pi / 4), 2));
+    double denominator = 0.312 * (1 + pow(cos((b + a) * pi / 4), 2));
+    double fraction = numerator / denominator;
+    double result = pow(a * a / (b * b * b), 2.0 / 3.0) * fraction * e;
+    
+
+    std::cout << "The result is: " << result << std::endl;
+
+    return 0;
+}
