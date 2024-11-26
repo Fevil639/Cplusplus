@@ -1,1 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cout << "Enter a natural number N: ";
+    cin >> N;
+
+    int product = 1;  
+    bool hasOdd = false;  
+
+    do {
+        int digit = N % 10;  
+        if (digit % 2 != 0) {  
+            product *= digit;
+            hasOdd = true;
+        }
+        N /= 10;  
+    } while (N > 0);
+
+    if (hasOdd) {
+        cout << "Product of odd digits: " << product << endl;
+    } else {
+        cout << "There are no odd digits in the number." << endl;
+    }
+
+    return 0;
+}
 
