@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+struct Date {
+    int hours;   
+    int minutes; 
+
+    Date(int h = 0, int m = 0) : hours(h), minutes(m) {}
+};
+
+void adjustTime(int& hours, int& minutes) {
+    while (minutes >= 60) {
+        minutes -= 60;
+        hours++;
+    }
+
+    while (hours >= 24) {
+        hours -= 24;
+    }
+}
+
+Date calculateDuration(const Date& start, const Date& end) {
+    Date duration;
+
+    int startInMinutes = start.hours * 60 + start.minutes;
+    int endInMinutes = end.hours * 60 + end.minutes;
+
+    if (endInMinutes < startInMinutes) {
+        endInMinutes += 24 * 60; 
+    }
+
+    int durationInMinutes = endInMinutes - startInMinutes;
+    duration.hours = durationInMinutes / 60;
+    duration.minutes = durationInMinutes % 60;
+
+    return duration;
+}
+
+int main() {
+    Date startTime, endTime;
+
+    cout << "Enter the start time (hours minutes): ";
+    cin >> startTime.hours >> startTime.minutes;
+
+    cout << "Enter the end time (hours minutes): ";
+    cin >> endTime.hours >> endTime.minutes;
+
+    if (startTime.hours < 0 || startTime.hours >= 24 || startTime.minutes < 0 || startTime.minutes >= 60 ||
+        endTime.hours < 0 || endTime.hours >= 24 || endTime.minutes < 0 || endTime.minutes >= 60) {
+        cout << "Invalid time input!" << endl;
+        return 1;
+    }
+
+    Date duration = calculateDuration(startTime, endTime);
+
+    cout << "Event duration: " << duration.hours << ":" << (duration.minutes < 10 ? "0" : "") << duration.minutes << endl;
+    return 0;
+}
