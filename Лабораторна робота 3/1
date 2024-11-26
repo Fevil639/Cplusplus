@@ -1,1 +1,19 @@
+#include <iostream>
 
+int main() {
+    int N;
+    std::cout << "Enter a three-digit number N: ";
+    std::cin >> N;
+
+ 
+    int lastDigit = N % 10;     
+    int firstDigit = N / 100;   
+    int middleDigit = (N / 10) % 10; 
+
+
+    int newN = lastDigit * 100 + middleDigit * 10 + firstDigit;
+
+    std::cout << "Number after permuting the first and last digits: " << newN << std::endl;
+
+    return 0;
+}
