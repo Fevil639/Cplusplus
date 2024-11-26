@@ -1,0 +1,26 @@
+#include <iostream>
+
+int main() {
+    int code;
+    std::cout << "Enter phone code: ";
+    std::cin >> code;
+
+    switch (code) {
+        case 380: 
+            std::cout << "Operator: Kyivstar" << std::endl;
+            break;
+        case 67:
+            std::cout << "Operator: Vodafone" << std::endl;
+            break;
+        case 93:
+            std::cout << "Operator: lifecell" << std::endl;
+            break;
+        case 44:
+            std::cout << "Operator: Ukrtelecom" << std::endl;
+            break;
+        default:
+            std::cout << "Unknown operator" << std::endl;
+    }
+
+    return 0;
+}
