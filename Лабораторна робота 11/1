@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+struct Date {
+    int hours;   
+    int minutes; 
+};
+
+void adjustTime(int& hours, int& minutes) {
+    
+    while (minutes >= 60) {
+        minutes -= 60;
+        hours++;
+    }
+
+    // Adjust hours to stay within 24-hour format
+    while (hours >= 24) {
+        hours -= 24;
+    }
+}
+
+int main() {
+    Date time;
+    int addedMinutes;
+
+    
+    cout << "Enter hours: ";
+    cin >> time.hours;
+    cout << "Enter minutes: ";
+    cin >> time.minutes;
+
+    
+    if (time.hours < 0 || time.hours >= 24 || time.minutes < 0 || time.minutes >= 60) {
+        cout << "Invalid time input!" << endl;
+        return 1;
+    }
+
+    
+    cout << "Enter the number of minutes to add: ";
+    cin >> addedMinutes;
+
+    
+    time.minutes += addedMinutes;
+
+    
+    adjustTime(time.hours, time.minutes);
+
+    
+    cout << "New time: " << time.hours << ":" << (time.minutes < 10 ? "0" : "") << time.minutes << endl;
+
+    return 0;
+}
