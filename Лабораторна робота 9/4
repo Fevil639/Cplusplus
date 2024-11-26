@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> arr = {3, 8, 1, 7, 5, 10, 2}; 
+    int A;
+
+    
+    std::cout << "Enter the number A: ";
+    std::cin >> A;
+
+  
+    int count = 0;
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] > A) {
+            count++;
+        }
+    }
+
+   
+    std::cout << "The number of elements greater than " << A << ": " << count << std::endl;
+
+    return 0;
+}
