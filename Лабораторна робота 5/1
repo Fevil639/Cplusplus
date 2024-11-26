@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath> // для використання sqrt
+#include <cmath> 
 
 using namespace std;
 
@@ -9,7 +9,7 @@ int main() {
     cout << "Введіть значення x: ";
     cin >> x;
 
-    // Перевіряємо умови визначеності виразу: x - 7 >= 0
+
     if (x >= 7) {
         y = 8 + sqrt(x - 7) / (x + 5);
         cout << "y = " << y << endl;
