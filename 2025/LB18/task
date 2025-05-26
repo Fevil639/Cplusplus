@@ -4,16 +4,18 @@ using namespace std;
 void increment(int &a) {
     a += 1;
 }
+
 void increment(int &a, int b) {
     a += b;
 }
+
 int main(void) {
     int var = 0;
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 10; i++) 
         if(i % 2)
-            increment(var);
+            increment(var);      // коли i непарне → +1
         else
-            increment(var, i);
+            increment(var, i);   // коли i парне → +i
     cout << var << endl;
     return 0;
 }
