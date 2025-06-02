@@ -12,17 +12,15 @@ private:
     int reserved;    // Кількість зарезервованих місць
 };
 
-// Реалізація конструктора класу
 FlightBooking::FlightBooking(int id, int capacity, int reserved) {
     this->id = id;
     this->capacity = capacity;
-    this->reserved = reserved;
+    this->reserved = reserved;  // Реалізація конструктора класу
 }
 
-// Метод для виведення статусу рейсу
 void FlightBooking::printStatus() {
     double percentage = (static_cast<double>(reserved) / capacity) * 100; // Обчислення відсотка зайнятих місць
-    std::cout << "Flight " << id << " : " << reserved << "/" << capacity << " (" << percentage << "%) seats reserved\n";
+    std::cout << "Flight " << id << " : " << reserved << "/" << capacity << " (" << percentage << "%) seats reserved\n";  // Метод для виведення статусу рейсу
 }
 
 int main() {
