@@ -1,26 +1,24 @@
-#include <iostream> 
-using namespace std; 
+#include <iostream>                      // Підключення бібліотеки для роботи з введенням та виведенням (cout, endl)
+using namespace std;                     // Дозволяє використовувати елементи з простору імен std без префікса (наприклад, cout замість std::cout)
 
-int main(void) {   
-    int vector[] = { 3, -5, 7, 10, -4, 14, 5, 2, -13 };
-    
-    int n = sizeof(vector) / sizeof(vector[0]);
+int main(void) {                         // Початок головної функції програми, з якої починається виконання
+    int vector[] = { 3, -5, 7, 10, -4, 14, 5, 2, -13 };  // Оголошення масиву з 9 цілих чисел
 
-    int* ptr = vector;
+    int n = sizeof(vector) / sizeof(vector[0]);         // Обчислення кількості елементів у масиві: загальний розмір / розмір одного елемента
 
-    int* min_ptr = vector;
-    
-    
-    int* end = vector + n;
-    while (ptr < end) {
-        
-    
-        if (*ptr < *min_ptr) {
-            min_ptr = ptr;
+    int* ptr = vector;                   // Ініціалізація вказівника ptr, який вказує на перший елемент масиву
+
+    int* min_ptr = vector;              // Ініціалізація вказівника min_ptr також першим елементом — вважаємо його мінімумом на старті
+
+    int* end = vector + n;              // Вказівник end вказує на елемент, що знаходиться одразу після останнього елемента масиву
+
+    while (ptr < end) {                 // Цикл, який проходить по всіх елементах масиву до end (не включаючи end)
+        if (*ptr < *min_ptr) {          // Якщо значення за адресою ptr менше, ніж поточне мінімальне
+            min_ptr = ptr;              // Оновити min_ptr: тепер він вказує на нове мінімальне значення
         }
-        ptr++;
+        ptr++;                          // Перехід до наступного елемента масиву (збільшення адреси на один елемент)
     }
-    
-    cout << "The smallest item in the array is " << *min_ptr << endl;
-    return 0;
+
+    cout << "The smallest item in the array is " << *min_ptr << endl; // Виведення найменшого знайденого значення на екран
+    return 0;                           // Завершення програми з кодом 0 (успішне завершення)
 }
