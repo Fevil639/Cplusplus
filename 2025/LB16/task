@@ -1,48 +1,69 @@
-#include <iostream>
-#include <ctime>
-#include <cmath>
-
+#include <iostream>  // Для виводу
+#include <ctime>     // Для роботи з поточною датою
+#include <cmath>     // (тут не використовується, але часто підключається для математики)
 using namespace std;
+
+// Структура для зберігання дати
 struct Date {
     int year;
     int month;
     int day;
 };
+
+// Перевірка, чи рік високосний
 bool isLeap(int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+
+// Повертає кількість днів у вказаному місяці певного року
 int monthLength(int year, int month) {
     int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    if (month == 2 && isLeap(year)) return 29;
-    return daysInMonth[month - 1];
+    if (month == 2 && isLeap(year)) return 29; // Лютий у високосному році
+    return daysInMonth[month - 1]; // Інакше — звичайна кількість днів
 }
+
+// Повертає поточну дату
 Date today() {
-    time_t t = time(NULL);
-    tm local = *localtime(&t);
+    time_t t = time(NULL);         // Отримуємо поточний час у секундах з 1970 року
+    tm local = *localtime(&t);     // Перетворюємо час у структуру дати та часу (локальну)
+    // localtime повертає вказівник на структуру tm, тому ми одразу робимо розіменування (*)
     Date d;
-    d.year = local.tm_year + 1900;
-    d.month = local.tm_mon + 1;
-    d.day = local.tm_mday;
+    d.year = local.tm_year + 1900; // tm_year — кількість років з 1900
+    d.month = local.tm_mon + 1;    // tm_mon — місяці від 0 до 11
+    d.day = local.tm_mday;         // День місяця
     return d;
 }
+
+// Рахуємо кількість днів від 01.01.0001 до заданої дати
 int daysSinceStart(Date d) {
-    int days = d.day;
+    int days = d.day; // Починаємо з поточного дня
+
+    // Додаємо всі дні попередніх років
     for (int y = 1; y < d.year; y++) {
         days += isLeap(y) ? 366 : 365;
     }
+
+    // Додаємо всі дні попередніх місяців поточного року
     for (int m = 1; m < d.month; m++) {
         days += monthLength(d.year, m);
     }
+
     return days;
 }
+
 int main() {
     Date birth;
-    birth.year = 2006; // Replace with your birth year
-    birth.month = 5;   // Replace with your birth month
-    birth.day = 31;    // Replace with your birth day
-    Date now = today();
-    int birthDays = daysSinceStart(birth);
-    int nowDays = daysSinceStart(now);
+    birth.year = 2006;  // Рік народження
+    birth.month = 5;    // Місяць народження
+    birth.day = 31;     // День народження
+
+    Date now = today(); // Отримуємо сьогоднішню дату
+
+    int birthDays = daysSinceStart(birth); // Кількість днів до дати народження
+    int nowDays = daysSinceStart(now);     // Кількість днів до поточної дати
+
     cout << "Days since birth: " << (nowDays - birthDays) << endl;
+    // Виводимо різницю — скільки днів пройшло з дня народження
+
     return 0;
 }
