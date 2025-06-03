@@ -1,28 +1,42 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <iostream>   // Для виводу в консоль
+#include <cstdlib>    // Для rand() і RAND_MAX
+#include <ctime>      // Для time(0)
 using namespace std;
 
 int main() {
-    srand(time(0));
-    int size = 10;
-    float *arr = new float[size];
-    int positive = 0, negative = 0;
+    srand(time(0)); // Ініціалізуємо генератор випадкових чисел
+
+    int size = 10; // Розмір масиву
+    float *arr = new float[size]; 
+    // Виділяємо динамічну пам’ять під масив з 10 елементів типу float
+    // arr — це вказівник на перший елемент цього масиву
+
+    int positive = 0, negative = 0; // Лічильники додатних і від’ємних чисел
 
     for (int i = 0; i < size; i++) {
+        // Генеруємо випадкове число у діапазоні [-2.0, 2.0]
         arr[i] = ((float)rand() / RAND_MAX) * 4.0f - 2.0f;
-        if (arr[i] > 0) positive++;
-        else if (arr[i] < 0) negative++;
+        // (float)rand() / RAND_MAX — випадкове число від 0 до 1
+        // * 4.0 — діапазон від 0 до 4
+        // - 2.0 — зсув до діапазону [-2, 2]
+
+        if (arr[i] > 0) positive++;   // Якщо число додатне
+        else if (arr[i] < 0) negative++; // Якщо число від’ємне
+        // Якщо 0 — не рахуємо в жодну категорію
     }
 
+    // Виводимо масив
     cout << "Array: ";
     for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
+        cout << arr[i] << " "; // arr[i] = *(arr + i)
+        // Це той самий принцип вказівника
     }
 
+    // Виводимо кількість додатних і від’ємних чисел
     cout << "\nPositive count: " << positive << endl;
     cout << "Negative count: " << negative << endl;
 
-    delete[] arr;
+    delete[] arr; // Звільняємо пам’ять, яку виділили через new
+
     return 0;
 }
