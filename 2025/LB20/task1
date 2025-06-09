@@ -1,36 +1,43 @@
-#include <iostream>
-#include <string>
-using namespace std;
+#include <iostream>      // Підключення бібліотеки для виводу/вводу в консоль (cout, endl)
+#include <string>        // Підключення бібліотеки для роботи з рядками (тип string)
 
-class Person
+using namespace std;     // Щоб не писати кожен раз std:: перед cout, string і т.д.
+
+class Person             // Оголошення класу Person (людина)
 {
-public:
-    string name;
-    int age;
+public:                     // Модифікатор доступу — ці змінні доступні ззовні класу
+    string name;             // Змінна name типу string (рядок), зберігає ім'я
+    int age;                 // Змінна age типу int (ціле число), зберігає вік
 };
 
-void print(const Person* person)
+void print(const Person* person)         // Функція print, яка приймає вказівник на об'єкт типу Person
 {
+            // Вивід у консоль: ім’я людини та її вік
     cout << person->name << " is " << person->age << " years old" << endl;
+    // person->name — звернення до змінної name через вказівник
+    // person->age — звернення до змінної age через вказівник
+    // << — оператор виводу
+    // endl — перехід на новий рядок
 }
 
-int main()
+int main() // Головна функція, з неї починається виконання програми
 {
-    Person person1;
-    person1.name = "Harry";
-    person1.age = 23;
+    Person person1; // Створення об'єкта person1 типу Person
+    person1.name = "Harry"; // Присвоєння імені об'єкту
+    person1.age = 23;       // Присвоєння віку об'єкту
 
-    Person person2;
-    person2.name = "Alice";
+    Person person2; // Створення другого об'єкта
+    person2.name = "Alice"; 
     person2.age = 30;
 
-    Person person3;
+    Person person3; // Створення третього об'єкта
     person3.name = "Bob";
-    person3.age = 27;       // Створення об'єктів класу Person
+    person3.age = 27;
 
-    print(&person1);
+    // Виклик функції print для кожного об'єкта
+    print(&person1); // &person1 — передаємо адресу (вказівник) об'єкта у функцію
     print(&person2);
-    print(&person3);      // Виклик функції print для кожного об'єкта
+    print(&person3);
 
-    return 0;
+    return 0; // Завершення виконання програми
 }
